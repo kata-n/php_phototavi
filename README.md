@@ -3,8 +3,7 @@
 ![image](https://user-images.githubusercontent.com/56011845/72674870-62dc7100-3abf-11ea-877a-fc2bcba651e4.png)
 # リンク
 https://www.phototavi.com/
-##できる事
-
+## できる事
 ・ユーザーは、データの投稿、一覧表示、編集、削除ができます。
 
 ・他ユーザーの投稿一覧も見ることができます。
