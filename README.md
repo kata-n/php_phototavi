@@ -3,5 +3,12 @@
 ![image](https://user-images.githubusercontent.com/56011845/72674870-62dc7100-3abf-11ea-877a-fc2bcba651e4.png)
 # リンク
 https://www.phototavi.com/
-### 詳細・デモ画面・製作過程
-Qiita:https://qiita.com/kata-n/items/a8ba0a7ad6fe8ac36347
+##できる事
+・ユーザーは、データの投稿、一覧表示、編集、削除ができます。
+
+・他ユーザーの投稿一覧も見ることができます。
+
+・お気に入りボタンを押せば、マイページで表示ができます。
+
+・検索機能はログインして中央の虫眼鏡からできます。
+ 自分の気になる県を探せます。
