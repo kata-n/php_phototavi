@@ -11,7 +11,7 @@ ini_set('error_log','php.log');
 // デバッグ
 //================================
 //デバッグフラグ
-$debug_flg = true;
+$debug_flg = false;
 //デバッグログ関数
 function debug($str){
     global $debug_flg;
@@ -194,7 +194,7 @@ function getUser($u_id){
 //================================
 //DB接続関数
 function dbConnect(){
-    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=phototrip;charset=utf8';
+    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=＊＊＊＊＊＊;charset=utf8';
     $user = '';
     $password = '';
     $options =array(
