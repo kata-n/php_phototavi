@@ -76,21 +76,21 @@ debug('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<画面表示処理終了 <<<<<<<<<<<<<<<<<<<
         <h2 class="profile__title">プロフィールを更新する</h2>
         <form action="" method="post" class="profile__form" enctype="multipart/form-data">
           <div class="area-msg"><?php err('common') ?></div>
-          <label class="<?php if(!empty($err_msg['username'])) echo 'err'; ?>">
+          <label class="<?php if(!empty($err_msg['username'])) echo sanitize('err'); ?>">
             ユーザーネーム
-            <input type="text" name="username" class="profile__name" value="<?php echo getFormData('username'); ?>">
+            <input type="text" name="username" class="profile__name" value="<?php echo sanitize(getFormData('username')); ?>">
           </label>
           <div class="area-msg"><?php err('username') ?></div>
             プロフィール画像<br>
-            <label class="area-drop2 <?php if(!empty($err_msg['pic'])) echo 'err'; ?>">
+            <label class="area-drop2 <?php if(!empty($err_msg['pic'])) echo sanitize('err'); ?>">
               <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
               <input type="file" name="pic" class="input-file" >
-              <img src="<?php echo getFormData('pic'); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('pic'))) echo 'display:none;' ?>">
+              <img src="<?php echo sanitize(getFormData('pic')); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('pic'))) echo sanitize('display:none;') ?>">
                 ドラッグ＆ドロップ
             </label>
             <div class="area-msg">
               <?php 
-              if(!empty($err_msg['pic'])) echo $err_msg['pic'];
+              if(!empty($err_msg['pic'])) echo sanitize($err_msg['pic']);
               ?>
             </div>
             <div class="btn-container" >
