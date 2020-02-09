@@ -23,13 +23,6 @@ if(!empty($_POST)){
     $pass = $_POST['pass'];
     $pass_save = (!empty($_POST['pass_save'])) ? true : false;
 
-//ゲストユーザーの指定
-  if(isset($_POST['guest'])){
-    //debug('ゲストユーザーです');
-    $name = 'ゲスト';
-    $pass = '';
-  }
-
     //パスワードの半角英数字チェック
     validHalf($pass,'pass');
     //パスワードの最大文字数チェック
@@ -125,12 +118,6 @@ debug('===============画面表示処理終了=================')
         <div class="btn-container">
           <input type="submit" class="login--btn" value="ログインする">
         </div>
-<!--
-        <div class="btn-container">
-          <p>ゲストユーザーは一部機能が制限されていますが、そのままログインできます</p>
-          <input type="submit" name="guest" class="login--btn login--guest" value="ゲストユーザーでログイン">
-        </div>
--->
       </form>
       <div class="signup-btn">
         <a href="signup.php">登録する</a>
