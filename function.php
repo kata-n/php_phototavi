@@ -211,7 +211,7 @@ function dbConnect(){
     return $dbh;
 }
     function queryPost($dbh, $sql, $data){
-    //クエリー実行
+    //プリペアドステートメント(SQLインジェクション対策)
     $stmt = $dbh->prepare($sql);
     //プレイスホルダーに値をセットし、SQL文を実行
     if(!$stmt->execute($data)){
