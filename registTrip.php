@@ -161,7 +161,7 @@ require('head.php');
  <section class="regist">
   <div class="regist__container">
    <form action="" method="post" class="regist__form" enctype="multipart/form-data" name="registform">
-   <h2 class="regist__title"><?php echo sanitize((!$edit_flg)) ? '投稿する' : '更新する'; ?></h2>
+   <h2 class="regist__title"><?php echo (!$edit_flg) ? '投稿する' : '更新する'; ?></h2>
    <div class="area-msg"><?php err('common')?></div>
     <label class="<?php if(!empty($err_msg['title'])) echo sanitize('err'); ?>">
      タイトル<span class="label-require">必須</span>
@@ -227,7 +227,7 @@ require('head.php');
           <label class="area-drop <?php if(!empty($err_msg['pic1'])) echo sanitize('err'); ?>">
             <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
             <input type="file" name="pic1" class="input-file">
-            <img src="<?php echo sanitize(getFormData('pic1')); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('pic1'))) echo sanitize('display:none;)' ?>">
+            <img src="<?php echo sanitize(getFormData('pic1')); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('pic1'))) echo sanitize('display:none;') ?>">
               ドラッグ＆ドロップ
           </label>
           <div class="area-msg">
@@ -267,7 +267,7 @@ require('head.php');
       </div>
 
       <div class="btn-container">
-        <input type="submit" class="btn btn-mid" id="js-posts" value="<?php echo sanitize((!$edit_flg)) ? '投稿する' : '更新する'; ?>">
+        <input type="submit" class="btn btn-mid" id="js-posts" value="<?php echo (!$edit_flg) ? '投稿する' : '更新する'; ?>">
       </div>
       <?php if(empty($edit_flg)) $class="hide";?>
       <input type="submit" id="js-delete" class="btn <?php if(isset($class)) echo sanitize($class); ?>" value="削除する" name="tripdelete">
