@@ -285,7 +285,6 @@ function getPlace(){
         $data = array();
 //        クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        
         if($stmt){
             //クエリ成功の場合全データ返却
             return $stmt->fetchAll();
