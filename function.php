@@ -196,7 +196,7 @@ function getUser($u_id){
 function dbConnect(){
     $dsn = 'mysql:host=aws-and-infra-web.;dbname=***;charset=utf8';
     $user = '*******';
-    $password = '********';
+    $password = '*******';
     $options =array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
