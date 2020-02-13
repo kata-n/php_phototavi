@@ -194,9 +194,9 @@ function getUser($u_id){
 //================================
 //DB接続関数
 function dbConnect(){
-    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=phototrip;charset=utf8';
-    $user = 'root';
-    $password = 'rootpassword';
+    $dsn = 'mysql:host=aws-and-infra-web.;dbname=***;charset=utf8';
+    $user = '*******';
+    $password = '********';
     $options =array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
