@@ -194,9 +194,9 @@ function getUser($u_id){
 //================================
 //DB接続関数
 function dbConnect(){
-    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=＊＊＊＊＊＊;charset=utf8';
-    $user = '';
-    $password = '';
+    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=phototrip;charset=utf8';
+    $user = 'root';
+    $password = 'rootpassword';
     $options =array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
@@ -211,7 +211,7 @@ function dbConnect(){
     return $dbh;
 }
     function queryPost($dbh, $sql, $data){
-    //プリペアドステートメント(SQLインジェクション対策)
+    //クエリー実行
     $stmt = $dbh->prepare($sql);
     //プレイスホルダーに値をセットし、SQL文を実行
     if(!$stmt->execute($data)){
@@ -351,7 +351,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     // 件数用のSQL文作成
     $sql = 'SELECT trip_id FROM trip';
     if(!empty($prefCategory)){
-      $sql .= ' WHERE place_id IN (';
+      $sql .= ' WHERE delete_flg = 0 AND place_id IN (';
       foreach($prefCategory as $value){
         $sql .= $value.',';
       }
@@ -360,7 +360,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     }
     if(!empty($emotion)){
       if(empty($prefCategory)){
-        $sql .= ' WHERE emotion IN (';
+        $sql .= ' WHERE delete_flg = 0 AND emotion IN (';
       } else {
         $sql .= ' AND emotion IN (';
       }
@@ -372,7 +372,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     }
     if(!empty($season)){
       if(empty($prefCategory) && empty($emotion)){
-        $sql .= ' WHERE season IN (';
+        $sql .= ' WHERE delete_flg = 0 AND season IN (';
       }else{
         $sql .= ' AND season IN (';
       }
