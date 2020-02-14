@@ -25,6 +25,7 @@ https://www.phototavi.com/
 - AWS(VPC、EC2、RDS）
 
 ## 使用ツール・ライブラリ
+- Google map API
 - jQuery
 - SASS
 - Ajax
