@@ -16,3 +16,15 @@ https://www.phototavi.com/
 
 ・検索機能はログイン後のトップページ中央の虫眼鏡からできます。
  自分の気になる県や季節などから、データを探せます。
+
+## 使用言語・データベース・インフラ
+- PHP 7.3.11
+- Javascript
+- CSS
+- MySQL
+- AWS(VPC、EC2、RDS）
+
+## 使用ツール・ライブラリ
+- jQuery
+- SASS
+- Ajax
