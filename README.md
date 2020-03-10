@@ -29,3 +29,6 @@ https://www.phototavi.com/
 - jQuery
 - SASS
 - Ajax
+
+## Qiitaで製作過程をまとめました
+https://qiita.com/kata-n/items/a8ba0a7ad6fe8ac36347
