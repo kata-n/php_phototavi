@@ -3,10 +3,10 @@
 //共通変数・関数ファイル読み込み
 require('function.php');
 
-debug('================================');
-debug('==========ログインページ===========');
-debug('================================');
-debugLogStart();
+//debug('================================');
+//debug('==========ログインページ===========');
+//debug('================================');
+//debugLogStart();
 
 //ログイン認証
 require('auth.php');
@@ -22,13 +22,6 @@ if(!empty($_POST)){
     $name = $_POST['name'];
     $pass = $_POST['pass'];
     $pass_save = (!empty($_POST['pass_save'])) ? true : false;
-
-//ゲストユーザーの指定
-  if(isset($_POST['guest'])){
-    debug('ゲストユーザーです');
-    $name = 'ゲスト';
-    $pass = 'guest123';
-  }
 
     //パスワードの半角英数字チェック
     validHalf($pass,'pass');
@@ -108,23 +101,22 @@ debug('===============画面表示処理終了=================')
       <form action="" method="post" class="login__form">
         <h2 class="heading">ログインする</h2>
         <label class="
-        <?php if(!empty($err_msg['name'])) echo 'err'?>" for="name">
-          <input type="text" class="first-text" name="name" value="<?php if(!empty($_POST['name'])) echo sanitize($_POST['name']);?>" placeholder="ユーザーネーム（必須）">
+        <?php if(!empty($err_msg['name'])) echo sanitize('err')?>" for="name">ユーザーネーム
+          <input type="text" class="first-text" name="name" value="システム" placeholder="ユーザーネーム（必須）">
         </label>
         <div class="area-msg"><?php err('name') ?></div>
-        <label class="<?php if(!empty($err_msg['pass'])) echo 'err'; ?>" for="pass">
-          <input type="password" class="first-pass" name="pass" value="<?php if(!empty($_POST['pass'])) echo sanitize($_POST['pass']); ?>" placeholder="パスワード（必須）">
+        <label class="<?php if(!empty($err_msg['pass'])) echo sanitize('err'); ?>" for="pass">パスワード
+          <input type="password" class="first-pass" name="pass" value="system123" placeholder="パスワード（必須）">
         </label>
+        <p>ユーザーネームとパスワードが空の場合は、お手数ですが以下の情報を入力してログインしてください</p>
+        <p>ユーザーネーム：システム</p>
+        <p>パスワード：system123</p>
         <div class="area-msg"><?php err('pass') ?></div>
         <label class="checkbox">
           <input type="checkbox" name="pass_save">次回ログインを省略する
         </label>
         <div class="btn-container">
-          <input type="submit" class="login--btn" value="ログイン">
-        </div>
-        <div class="btn-container">
-          <p>ゲストユーザーは一部機能が制限されていますが、そのままログインできます</p>
-          <input type="submit" name="guest" class="login--btn login--guest" value="ゲストユーザーでログイン">
+          <input type="submit" class="login--btn" value="ログインする">
         </div>
       </form>
       <div class="signup-btn">

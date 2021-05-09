@@ -200,6 +200,7 @@ function dbConnect(){
     $dsn = $DB_DSN;
     $user = $DB_NAME;
     $password = $DB_PASSWORD;
+
     $options =array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
@@ -286,9 +287,8 @@ function getPlace(){
         //SQL
         $sql = "SELECT * FROM Pref";
         $data = array();
-//        クエリ実行
+        //クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-
         if($stmt){
             //クエリ成功の場合全データ返却
             return $stmt->fetchAll();
@@ -354,7 +354,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     // 件数用のSQL文作成
     $sql = 'SELECT trip_id FROM trip';
     if(!empty($prefCategory)){
-      $sql .= ' WHERE place_id IN (';
+      $sql .= ' WHERE delete_flg = 0 AND place_id IN (';
       foreach($prefCategory as $value){
         $sql .= $value.',';
       }
@@ -363,7 +363,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     }
     if(!empty($emotion)){
       if(empty($prefCategory)){
-        $sql .= ' WHERE emotion IN (';
+        $sql .= ' WHERE delete_flg = 0 AND emotion IN (';
       } else {
         $sql .= ' AND emotion IN (';
       }
@@ -375,7 +375,7 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     }
     if(!empty($season)){
       if(empty($prefCategory) && empty($emotion)){
-        $sql .= ' WHERE season IN (';
+        $sql .= ' WHERE delete_flg = 0 AND season IN (';
       }else{
         $sql .= ' AND season IN (';
       }
@@ -640,7 +640,6 @@ function getUserList($u_id){
     error_log('エラー発生:' . $e->getMessage());
   }
 }
-
 function isLike($u_id, $p_id){
   debug('お気に入り情報があるか確認します。');
   debug('ユーザーID：'.$u_id);
