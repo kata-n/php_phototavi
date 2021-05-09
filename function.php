@@ -11,7 +11,7 @@ ini_set('error_log','php.log');
 // デバッグ
 //================================
 //デバッグフラグ
-$debug_flg = true;
+$debug_flg = false;
 //デバッグログ関数
 function debug($str){
     global $debug_flg;
@@ -194,14 +194,12 @@ function getUser($u_id){
 //================================
 //DB接続関数
 function dbConnect(){
-//DBへの接続準備
-//local
-//    $dsn = 'mysql:dbname=omotrip;host=localhost;charset=utf8';
-//    $user = 'root';
-//    $password = 'root';
-    $dsn = 'mysql:host=aws-and-infra-web.cijpwzdtjkir.ap-northeast-1.rds.amazonaws.com;dbname=phototrip;charset=utf8';
-    $user = 'root';
-    $password = 'rootpassword';
+    //DBへの接続準備
+    require('setting.php');
+
+    $dsn = $DB_DSN;
+    $user = $DB_NAME;
+    $password = $DB_PASSWORD;
     $options =array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
@@ -237,7 +235,7 @@ function getMessagebord($t_id){
         $sql = 'SELECT m.message, m.post_date, u.username, u.pic FROM message AS m LEFT JOIN users AS u ON m.user_id = u.id WHERE m.trip_id = :t_id AND m.delete_flg = 0 ORDER BY post_date DESC';
         $data = array(':t_id' => $t_id);
         $stmt = queryPost($dbh, $sql, $data);
-        
+
         if($stmt){
             //クエリ成功の場合全データ返却
             return $stmt->fetchAll();
@@ -290,7 +288,7 @@ function getPlace(){
         $data = array();
 //        クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        
+
         if($stmt){
             //クエリ成功の場合全データ返却
             return $stmt->fetchAll();
@@ -395,10 +393,10 @@ function getTripList($currentMinNum = 1, $prefCategory, $emotion, $season, $span
     if(!$stmt){
       return false;
     }
-    
+
     // ページング用のSQL文作成
     $sql = 'SELECT t.trip_id, t.title, t.place_id, t.season, t.emotion, t.comment, t.pic1, t.create_date, u.id, u.username, u.pic FROM trip AS t INNER JOIN users AS u ON t.user_id = u.id';
-    
+
     if(!empty($prefCategory)){
       $sql .= ' WHERE place_id IN (';
       foreach($prefCategory as $value){
@@ -472,7 +470,7 @@ function getPasslist($currentMinNum =1, $category, $passT, $sort, $span =10){
     //例外処理
     try{
         $dbh = dbConnect();
-        
+
         $sql  = 'SELECT * ';
         $sql .= 'FROM manage ';
 
@@ -494,9 +492,9 @@ function getPasslist($currentMinNum =1, $category, $passT, $sort, $span =10){
             }
         $sql .= $where;
         }
-        
+
         $sql .= 'ORDER BY passhuri ASC; ';
-        
+
         $data = array();
         //クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
@@ -505,11 +503,11 @@ function getPasslist($currentMinNum =1, $category, $passT, $sort, $span =10){
         if(!$stmt){
             return false;
         }
-        
+
         //ページング用のSQL文を作成
         $sql  = 'SELECT * ';
         $sql .= 'FROM manage ';
-        
+
         $where = '';
         if($category != '' || $passT != ''){
 
@@ -528,7 +526,7 @@ function getPasslist($currentMinNum =1, $category, $passT, $sort, $span =10){
             }
             $sql .= $where;
         }
-        
+
         $sql .= 'ORDER BY passhuri ASC';
         $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum.';';
 
@@ -536,7 +534,7 @@ function getPasslist($currentMinNum =1, $category, $passT, $sort, $span =10){
         debug('あなたが書いたSQL：'.$sql);
         //クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        
+
         if($stmt){
             //クエリ結果の全レコードを格納
             $result['data'] = $stmt->fetchAll();
@@ -559,7 +557,7 @@ function getMyTripData($u_id){
         $data = array(':u_id' => $u_id);
         //クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        
+
         if($stmt){
             //クエリ結果の全レコードを返却
             return $stmt->fetchAll();
@@ -681,7 +679,7 @@ function getfavorite($u_id, $t_id){
         $data = array(':u_id' => $u_id, ':t_id' => $t_id);
         //クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        
+
         if($stmt->rowCount()){
             debug('お気に入りです');
             return true;
@@ -765,7 +763,7 @@ function appendGetParam($arr_del_key = array()){
 function uploadImg($file, $key){
   debug('画像アップロード処理開始');
   debug('FILE情報：'.print_r($file,true));
-  
+
   if (isset($file['error']) && is_int($file['error'])) {
     try {
       // バリデーション
@@ -800,7 +798,7 @@ function uploadImg($file, $key){
       }
       // 保存したファイルパスのパーミッション（権限）を変更する
       chmod($path, 0644);
-      
+
       debug('ファイルは正常にアップロードされました');
       debug('ファイルパス：'.$path);
       return $path;
@@ -845,7 +843,7 @@ function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5
     $minPageNum = $currentPageNum - 2;
     $maxPageNum = $currentPageNum + 2;
   }
-  
+
   echo '<div class="pagination">';
     echo '<ul class="pagination-list">';
       if($currentPageNum != 1){

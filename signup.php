@@ -104,7 +104,7 @@ require('head.php');
           ?>
         </div>
         <div class="btn-container">
-          <input type="submit" class="login-btn sign-btn js-signup" value="登録する">
+          <input type="submit" class="login-btn sign-btn js-signup" value="登録する" disabled>
         </div>
       </form>
     </section>
