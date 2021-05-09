@@ -102,15 +102,12 @@ debug('===============画面表示処理終了=================')
         <h2 class="heading">ログインする</h2>
         <label class="
         <?php if(!empty($err_msg['name'])) echo sanitize('err')?>" for="name">ユーザーネーム
-          <input type="text" class="first-text" name="name" value="システム" placeholder="ユーザーネーム（必須）">
+          <input type="text" class="first-text" name="name" value="" placeholder="ユーザーネーム（必須）">
         </label>
         <div class="area-msg"><?php err('name') ?></div>
         <label class="<?php if(!empty($err_msg['pass'])) echo sanitize('err'); ?>" for="pass">パスワード
-          <input type="password" class="first-pass" name="pass" value="system123" placeholder="パスワード（必須）">
+          <input type="password" class="first-pass" name="pass" value="" placeholder="パスワード（必須）">
         </label>
-        <p>ユーザーネームとパスワードが空の場合は、お手数ですが以下の情報を入力してログインしてください</p>
-        <p>ユーザーネーム：システム</p>
-        <p>パスワード：system123</p>
         <div class="area-msg"><?php err('pass') ?></div>
         <label class="checkbox">
           <input type="checkbox" name="pass_save">次回ログインを省略する

@@ -83,7 +83,7 @@ require('head.php');
           <input type="text" class="sign-name" name="name" value="<?php if(!empty($_POST['name'])) echo $_POST['name'];?>" placeholder="ユーザーネーム（必須）">
         </label>
         <div class="area-msg">
-          <?php 
+          <?php
           if(!empty($err_msg['name'])) echo $err_msg['name'];
           ?>
         </div>
@@ -91,7 +91,7 @@ require('head.php');
           <input type="password" class="sign-pass" name="pass" value="<?php if(!empty($_POST['pass'])) echo $_POST['pass']; ?>" placeholder="パスワード（英数字6文字以上）">
         </label>
         <div class="area-msg">
-          <?php 
+          <?php
           if(!empty($err_msg['pass'])) echo $err_msg['pass'];
           ?>
         </div>
@@ -99,7 +99,7 @@ require('head.php');
           <input type="password" class="sign-repass" name="pass_re" value="<?php if(!empty($_POST['pass_re'])) echo $_POST['pass_re']; ?>" placeholder="パスワード再入力（必須）">
         </label>
         <div class="area-msg">
-          <?php 
+          <?php
           if(!empty($err_msg['pass_re'])) echo $err_msg['pass_re'];
           ?>
         </div>

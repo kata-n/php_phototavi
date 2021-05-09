@@ -3,7 +3,7 @@
 // ログ
 //================================
 //ログを取るか
-ini_set('log_errors','on');
+ini_set('log_errors','off');
 //ログの出力ファイルを指定
 ini_set('error_log','php.log');
 
